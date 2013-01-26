@@ -1,8 +1,16 @@
-CREATE TABLE combined (
+CREATE TABLE advertisement (
   `Listed Age` text, `Title` text, `Pictures` text, `PicCode` text,
   `Phone` text, `Location` text, `Date` text, `Main` text, `area` text,
   `City` text
 );
+
+CREATE TABLE kidphones (
+  `Phone` text,
+  UNIQUE(`Phone`)
+);
+
+CREATE INDEX Phone ON advertisement (Phone);
+CREATE INDEX City ON advertisement (City);
 
 ATTACH DATABASE 'minneapolis.db'  AS minneapolis;
 ATTACH DATABASE 'dc.db'           AS dc;
@@ -28,14 +36,19 @@ ALTER TABLE miami.swdata ADD COLUMN "City" text DEFAULT 'miami.db';
 ALTER TABLE newjersey.swdata ADD COLUMN "City" text DEFAULT 'newjersey.db';
 ALTER TABLE chicago.swdata ADD COLUMN "City" text DEFAULT 'chicago.db';
 
-INSERT INTO combined SELECT * FROM minneapolis.swdata;
-INSERT INTO combined SELECT * FROM dc.swdata;
-INSERT INTO combined SELECT * FROM philidelphia.swdata;
-INSERT INTO combined SELECT * FROM losangeles.swdata;
-INSERT INTO combined SELECT * FROM denver.swdata;
-INSERT INTO combined SELECT * FROM seattle.swdata;
-INSERT INTO combined SELECT * FROM portland.swdata;
-INSERT INTO combined SELECT * FROM newyork.swdata;
-INSERT INTO combined SELECT * FROM miami.swdata;
-INSERT INTO combined SELECT * FROM newjersey.swdata;
-INSERT INTO combined SELECT * FROM chicago.swdata;
+INSERT INTO advertisement SELECT * FROM minneapolis.swdata;
+INSERT INTO advertisement SELECT * FROM dc.swdata;
+INSERT INTO advertisement SELECT * FROM philidelphia.swdata;
+INSERT INTO advertisement SELECT * FROM losangeles.swdata;
+INSERT INTO advertisement SELECT * FROM denver.swdata;
+INSERT INTO advertisement SELECT * FROM seattle.swdata;
+INSERT INTO advertisement SELECT * FROM portland.swdata;
+INSERT INTO advertisement SELECT * FROM newyork.swdata;
+INSERT INTO advertisement SELECT * FROM miami.swdata;
+INSERT INTO advertisement SELECT * FROM newjersey.swdata;
+INSERT INTO advertisement SELECT * FROM chicago.swdata;
+
+-- The query of interest
+SELECT * FROM kidphones INNER JOIN advertisement 
+ON advertisement.phone = kidphones.phone 
+WHERE advertisement.city != 'dc';
