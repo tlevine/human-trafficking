@@ -21,6 +21,7 @@ server.get '/', (req, res) ->
               <textarea name="phone_numbers" style="width: 100%; height: 90%;" placeholder="Paste phone numbers here."></textarea>
               <input type="submit" name="submit" value="Submit" />
           </form>
+          <a href="traffic.csv">Results</a>
       </body>
   </html>
   '''
