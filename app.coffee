@@ -33,7 +33,6 @@ server.post '/import', (req, res) ->
   '''
   sql = 'BEGIN TRANSACTION;' + schema + (phone_numbers.map (number) -> "INSERT INTO kidphone (phone) VALUES (#{number});").join('') + 'COMMIT;'
   db = new sqlite3.Database 'trafficking.db'
-  console.log sql
   db.exec sql, (err) ->
     res.send err
 
