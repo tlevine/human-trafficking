@@ -1,3 +1,6 @@
+#!/usr/bin/env python2
+# -*- encoding: utf-8 -*-
+
 ###############################################################################
 # To do list:
 # - other postings by same account
@@ -175,7 +178,7 @@ def scrape_links(links):
             # Print out the data we've gathered
            #print record, '------------'
             # Finally, save the record to the datastore - 'Artist' is our unique key
-        time.sleep(5)
+        time.sleep(0.5)
         return record
 
 # scrape_and_look_for_next_link function: calls the scrape_table
@@ -190,7 +193,7 @@ def scrape_and_look_for_next_link(url, city):
     print links
 #    print links
     record = scrape_links(links)
-    record['city'] = city
+    record['City'] = city
     scraperwiki.sqlite.save(["Title"], record)
     scraperwiki.sqlite.save_var('last_link', links[0])
     scraperwiki.sqlite.save_var('dclastlink', links[0])
@@ -199,7 +202,7 @@ def scrape_and_look_for_next_link(url, city):
     if next_link:
         next_url = urlparse.urljoin(base_url, next_link[0].attrib.get('href'))
 #        print next_url
-        scrape_and_look_for_next_link(next_url)
+        scrape_and_look_for_next_link(next_url, city)
 
 # ---------------------------------------------------------------------------
 # START HERE: define your starting URL - then
@@ -210,6 +213,7 @@ def scrape_and_look_for_next_link(url, city):
 print "Hello!"
 print datetime.now()
 scraperwiki.sqlite.save_var('lastcheck', datetime.now().strftime('%c'))
+last_link = scraperwiki.sqlite.get_var('last_link', '')
 
 #starting_url = urlparse.urljoin(base_url, 'example_table_1.html')
 
