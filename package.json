@@ -1,0 +1,23 @@
+{
+  "author": "Thomas Levine (thomaslevine.com)",
+  "name": "scott-server",
+  "description": "Wetlands permit application data",
+  "version": "0.0.0",
+  "homepage": "http://thomaslevine.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/human-trafficking/scott.git"
+  },
+  "engines": {
+    "node": "~0.8.16"
+  },
+  "dependencies": {
+    "restify": "~2.0.4",
+    "sqlite3": "~2.1.5",
+    "node-static": "~0.6.7"
+  },
+  "devDependencies": {
+  },
+  "optionalDependencies": {}
+}
+

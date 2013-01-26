@@ -1,0 +1,5 @@
+#!/bin/sh
+
+./download.py
+sqlite3 -csv -header trafficking.db < union.sql > traffic.csv
+echo > index.html
