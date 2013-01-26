@@ -1,4 +1,4 @@
 #!/bin/sh
 
-# ./download.py
+./download.sh
 sqlite3 -csv -header trafficking.db < union.sql > traffic.csv
