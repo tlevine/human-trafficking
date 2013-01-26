@@ -4,7 +4,7 @@ CREATE TABLE advertisement (
   `City` text
 );
 
-CREATE TABLE kidphones (
+CREATE TABLE kidphone (
   `Phone` text,
   UNIQUE(`Phone`)
 );
@@ -49,6 +49,6 @@ INSERT INTO advertisement SELECT * FROM newjersey.swdata;
 INSERT INTO advertisement SELECT * FROM chicago.swdata;
 
 -- The query of interest
-SELECT * FROM kidphones INNER JOIN advertisement 
-ON advertisement.phone = kidphones.phone 
+SELECT * FROM kidphone INNER JOIN advertisement 
+ON advertisement.phone = kidphone.phone 
 WHERE advertisement.city != 'dc';
