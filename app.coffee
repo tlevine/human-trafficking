@@ -32,10 +32,14 @@ server.post '/import', (req, res) ->
   DROP TABLE IF EXISTS kidphone;
   CREATE TABLE kidphone ( phone TEXT NOT NULL );
   '''
-  sql = 'BEGIN TRANSACTION;' + schema + (phone_numbers.map (number) -> "INSERT INTO kidphone (phone) VALUES (#{number});").join('') + 'COMMIT;'
+  sql = 'BEGIN TRANSACTION;' + schema + (phone_numbers.map (number) -> "INSERT INTO kidphone (phone) VALUES (\'#{number}\');").join('') + 'COMMIT;'
   db = new sqlite3.Database 'trafficking.db'
   db.exec sql, (err) ->
-    res.send err
+    if (err)
+      res.send err
+    else
+      ul = ((phone_numbers.map ((n) -> '<li>' + n + '</li>')).join '')
+      res.send '<p>Using these numbers (<a href="/">home</a>)</p><ul>' + ul + '</ul>'
 
 server.get '/traffic.csv', (req, res) ->
   fs.readFile 'traffic.csv', (err, data) ->
