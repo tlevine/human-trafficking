@@ -1,71 +1,68 @@
+DROP TABLE IF EXISTS advertisement;
+
 CREATE TABLE advertisement (
   `Listed Age` text, `Title` text, `Pictures` text, `PicCode` text,
   `Phone` text, `Location` text, `Date` text, `Main` text, `area` text,
   `City` text
 );
 
-CREATE TABLE kidphone (
-  `Phone` text,
-  UNIQUE(`Phone`)
-);
-
 CREATE INDEX Phone ON advertisement (Phone);
 CREATE INDEX City ON advertisement (City);
 
-ATTACH DATABASE 'minneapolis.db'  AS minneapolis;
-ALTER TABLE minneapolis.swdata ADD COLUMN "City" text DEFAULT 'minneapolis.db';
+ATTACH DATABASE 'minneapolis.db'  AS 'minneapolis';
+ALTER TABLE minneapolis.swdata ADD COLUMN "City" text DEFAULT 'minneapolis';
 INSERT INTO advertisement SELECT * FROM minneapolis.swdata;
-DETATCH DATABASE 'minneapolis.db'
+DETACH DATABASE 'minneapolis.db';
 
-ATTACH DATABASE 'dc.db'           AS dc;
-ALTER TABLE dc.swdata ADD COLUMN "City" text DEFAULT 'dc.db';
+ATTACH DATABASE 'dc.db'           AS 'dc';
+ALTER TABLE dc.swdata ADD COLUMN "City" text DEFAULT 'dc';
 INSERT INTO advertisement SELECT * FROM dc.swdata;
-DETATCH DATABASE 'dc.db'
+DETACH DATABASE 'dc.db';
 
-ATTACH DATABASE 'philidelphia.db' AS philidelphia;
-ALTER TABLE philidelphia.swdata ADD COLUMN "City" text DEFAULT 'philidelphia.db';
+ATTACH DATABASE 'philidelphia.db' AS 'philidelphia';
+ALTER TABLE philidelphia.swdata ADD COLUMN "City" text DEFAULT 'philidelphia';
 INSERT INTO advertisement SELECT * FROM philidelphia.swdata;
-DETATCH DATABASE 'philidelphia.db'
+DETACH DATABASE 'philidelphia.db';
 
-ATTACH DATABASE 'losangeles.db'   AS losangeles;
-ALTER TABLE losangeles.swdata ADD COLUMN "City" text DEFAULT 'losangeles.db';
+ATTACH DATABASE 'losangeles.db'   AS 'losangeles';
+ALTER TABLE losangeles.swdata ADD COLUMN "City" text DEFAULT 'losangeles';
 INSERT INTO advertisement SELECT * FROM losangeles.swdata;
-DETATCH DATABASE 'losangeles.db'
+DETACH DATABASE 'losangeles.db';
 
-ATTACH DATABASE 'denver.db'       AS denver;
-ALTER TABLE denver.swdata ADD COLUMN "City" text DEFAULT 'denver.db';
+ATTACH DATABASE 'denver.db'       AS 'denver';
+ALTER TABLE denver.swdata ADD COLUMN "City" text DEFAULT 'denver';
 INSERT INTO advertisement SELECT * FROM denver.swdata;
-DETATCH DATABASE 'denver.db'
+DETACH DATABASE 'denver.db';
 
-ATTACH DATABASE 'seattle.db'      AS seattle;
-ALTER TABLE seattle.swdata ADD COLUMN "City" text DEFAULT 'seattle.db';
+ATTACH DATABASE 'seattle.db'      AS 'seattle';
+ALTER TABLE seattle.swdata ADD COLUMN "City" text DEFAULT 'seattle';
 INSERT INTO advertisement SELECT * FROM seattle.swdata;
-DETATCH DATABASE 'seattle.db'
+DETACH DATABASE 'seattle.db';
 
-ATTACH DATABASE 'portland.db'     AS portland;
-ALTER TABLE portland.swdata ADD COLUMN "City" text DEFAULT 'portland.db';
+ATTACH DATABASE 'portland.db'     AS 'portland';
+ALTER TABLE portland.swdata ADD COLUMN "City" text DEFAULT 'portland';
 INSERT INTO advertisement SELECT * FROM portland.swdata;
-DETATCH DATABASE 'portland.db'
+DETACH DATABASE 'portland.db';
 
-ATTACH DATABASE 'newyork.db'      AS newyork;
-ALTER TABLE newyork.swdata ADD COLUMN "City" text DEFAULT 'newyork.db';
+ATTACH DATABASE 'newyork.db'      AS 'newyork';
+ALTER TABLE newyork.swdata ADD COLUMN "City" text DEFAULT 'newyork';
 INSERT INTO advertisement SELECT * FROM newyork.swdata;
-DETATCH DATABASE 'newyork.db'
+DETACH DATABASE 'newyork.db';
 
-ATTACH DATABASE 'miami.db'        AS miami;
-ALTER TABLE miami.swdata ADD COLUMN "City" text DEFAULT 'miami.db';
+ATTACH DATABASE 'miami.db'        AS 'miami';
+ALTER TABLE miami.swdata ADD COLUMN "City" text DEFAULT 'miami';
 INSERT INTO advertisement SELECT * FROM miami.swdata;
-DETATCH DATABASE 'miami.db'
+DETACH DATABASE 'miami.db';
 
-ATTACH DATABASE 'newjersey.db'    AS newjersey;
-ALTER TABLE newjersey.swdata ADD COLUMN "City" text DEFAULT 'newjersey.db';
+ATTACH DATABASE 'newjersey.db'    AS 'newjersey';
+ALTER TABLE newjersey.swdata ADD COLUMN "City" text DEFAULT 'newjersey';
 INSERT INTO advertisement SELECT * FROM newjersey.swdata;
-DETATCH DATABASE 'newjersey.db'
+DETACH DATABASE 'newjersey.db';
 
-ATTACH DATABASE 'chicago.db'      AS chicago;
-ALTER TABLE chicago.swdata ADD COLUMN "City" text DEFAULT 'chicago.db';
+ATTACH DATABASE 'chicago.db'      AS 'chicago';
+ALTER TABLE chicago.swdata ADD COLUMN "City" text DEFAULT 'chicago';
 INSERT INTO advertisement SELECT * FROM chicago.swdata;
-DETATCH DATABASE 'chicago.db'
+DETACH DATABASE 'chicago.db';
 
 -- The query of interest
 SELECT * FROM kidphone INNER JOIN advertisement 
