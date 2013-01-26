@@ -1,3 +1,5 @@
+#!/usr/bin/env coffee
+
 fs = require 'fs'
 
 restify = require 'restify'
@@ -13,7 +15,7 @@ server = restify.createServer()
 server.use (restify.bodyParser { mapParams: false })
 
 server.get '/', (req, res, next) ->
-    res.send 200 '''
+    res.send 200, '''
     <html>
         <head>
         </head>
@@ -34,3 +36,11 @@ server.post '/import', (req, res, next) ->
     db.run sql, (err) ->
         res.send 204
         next()
+
+server.get '/', (req, res, next) ->
+    fs.readFile 'traffic.csv', (err, data) ->
+        res.setHeader 'content-type', 'text/csv'
+        res.send data
+        next()
+
+server.listen 1420
