@@ -63,8 +63,3 @@ ATTACH DATABASE 'chicago.db'      AS 'chicago';
 ALTER TABLE chicago.swdata ADD COLUMN "City" text DEFAULT 'chicago';
 INSERT INTO advertisement SELECT * FROM chicago.swdata;
 DETACH DATABASE 'chicago';
-
--- The query of interest
-SELECT * FROM kidphone INNER JOIN advertisement 
-ON advertisement.phone = kidphone.phone 
-WHERE advertisement.city != 'dc';

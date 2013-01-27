@@ -1,4 +1,6 @@
 #!/bin/sh
 
 ./download.sh
-sqlite3 -csv -header trafficking.db < union.sql > traffic.csv
+sqlite3 trafficking.db < union.sql
+sqlite3 -csv -header trafficking.db < query.sql > traffic.csv
+gzip traffic.csv
