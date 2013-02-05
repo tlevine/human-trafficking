@@ -13,4 +13,4 @@ Then run.
     run
 
     # Serve
-    node_modules/http-server/bin/http-server
+    ./app.coffee
